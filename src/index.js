@@ -8,6 +8,8 @@ import { Card } from 'antd';
 
 import 'antd/dist/antd.css';
 
+// TODO: name+object(s) input that draw from a list of names+objects. can be specific or random
+
 const mountNode = document.getElementById('root');
 
 ReactDOM.render(
