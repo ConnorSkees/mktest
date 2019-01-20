@@ -67,6 +67,8 @@ class QuestionInput extends Component {
 
   createVariable(item) {
     let { name, min, max, step } = item;
+  renderVariable(item) {
+    let { name, min, max, step, key } = item;
 
     return (
       <VariableForm
@@ -80,7 +82,7 @@ class QuestionInput extends Component {
   render() {
     let { variables } = this.state;
     // console.log('variables', variables)
-    variables = variables.map(v => this.createVariable(v));
+    variables = variables.map(v => this.renderVariable(v));
     return (
       <div>
         <Input
