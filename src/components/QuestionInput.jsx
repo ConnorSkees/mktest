@@ -15,35 +15,72 @@ class QuestionInput extends Component {
   handleChange = event => {
     let { value } = event.target;
     this.setState({ value });
-    console.log(value, this.state.value)
-      this.parseVariables(value);
+    this.parseVariableNames(value);
   }
 
-  parseVariables(value) {
+  parseVariableNames(value) {
     let variableRegex = /\{.*?\}/g;
     let matches = value.match(variableRegex);
     if (matches){
-      matches = matches.map(m => {
-          return (
-            {
-              key: m
-            });
-      })
-      this.setState({ variables: matches })
+      matches = [...new Set(matches)]
+      let counter = -1;
+      matches = matches.map(m => m.replace("{", "").replace("}", "")).filter(x => x.indexOf("{") === -1);
+
+      let variables = []
+
+      matches.map(m => {
+        counter++;
+        if (matches.length != this.state.variables.length){
+          // new variable created
+          let match = this.state.variables.filter(k => k.name == m)
+
+          if (match.length > 0){
+            // variable already exists, so we just return it
+            variables.push(match[0])
+
+          } else{
+            // new variable, so we must make a new blank version
+            variables.push({ key: counter, name: m })
+          }
+
+        } else {
+          // unrelated update or a rename
+          let nameMatch = this.state.variables.filter(k => k.name == m);
+          let counterMatch = this.state.variables.filter(k => k.key == counter);
+
+          if (nameMatch.length > 0){
+            // name was found, was not renamed
+            variables.push(nameMatch[0])
+
+          } else if (counterMatch.length > 0){
+            // name not found, so it must've been renamed
+            counterMatch[0].name = m;
+            variables.push(counterMatch[0])
+          }
+        }
+      });
+      this.setState({ variables })
+    } else {
+      this.setState({ variables: [] })
     }
   }
 
   createVariable(item) {
-    item = item.replace("{", "");
-    item = item.replace("}", "");
+    let { name, min, max, step } = item;
+
     return (
-      <VariableForm name={ item } />
+      <VariableForm
+        min={ min }
+        max={ max }
+        step={ step }
+        name={ name } />
     )
   }
 
   render() {
     let { variables } = this.state;
-    variables = variables.map(v => this.createVariable(v.key));
+    // console.log('variables', variables)
+    variables = variables.map(v => this.createVariable(v));
     return (
       <div>
         <Input

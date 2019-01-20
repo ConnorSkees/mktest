@@ -5,9 +5,10 @@ import VariablePicker from './VariablePicker'
 
 class VariableForm extends Component {
   state = {
-    min: 0,
-    max: 0,
-    step: 1,
+    name: this.props.name,
+    min: this.props.min || 0,
+    max: this.props.max || 0,
+    step: this.props.step || 1,
     unit: '',
   };
 

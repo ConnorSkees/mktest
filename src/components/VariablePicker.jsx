@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, InputNumber, Tooltip, Divider, Form, Switch, Cascader } from 'antd';
+import { Switch, Cascader } from 'antd';
 
 function toTitleCase(str) {
         return str.replace(
@@ -20,9 +20,6 @@ function convertToDict(arr){
       });
   return arr
 }
-
-const englishLetters = convertToDict('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split(''));
-const greekLetters = convertToDict('ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω'.split(''));
 
 const metricUnits = convertToDict(['meter', 'gram', 'second', 'ampere', 'kelvin', 'mole', 'candela', 'liter'].sort());
 const derivedUnits = convertToDict(['radian', 'newton', 'pascal', 'joule',
@@ -101,7 +98,7 @@ const options = [
 const displayRender = (labels, selectedOptions) => labels.map((label, i) => {
   const option = selectedOptions[i];
   if (! option.isParent){
-    return <span key={option.value}>{label}</span>;
+      return <span key={option.value}>{label}</span>;
     }
 });
 
