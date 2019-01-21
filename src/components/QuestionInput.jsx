@@ -136,7 +136,8 @@ class QuestionInput extends Component {
     variables = variables.map(v => this.renderVariable(v));
     return (
       <div>
-        <Input
+        <Input.TextArea
+          autosize={ true }
           value={ this.state.value }
           onChange={event => this.handleChange(event) }
           onKeyUp={event => this.handleKeyUp(event)}
