@@ -70,7 +70,7 @@ class QuestionInput extends Component {
           } else{
             console.log('new', counter, m)
             // new variable, so we must make a new blank version
-            variables.push({ key: counter, name: m, step: 1, min: 0, unit: 'none' })
+            variables.push({ key: counter, name: m, step: 1, min: 0, unit: [] })
           }
 
         } else {
@@ -114,7 +114,7 @@ class QuestionInput extends Component {
   }
 
   renderVariable(item) {
-    let { name, min, max, step, key } = item;
+    let { name, min, max, step, key, unit } = item;
 
     return (
       <VariableForm
@@ -122,6 +122,7 @@ class QuestionInput extends Component {
         onStepChange={(step, key) => this.handleStepChange(step, key) }
         onMinChange={(min, key) => this.handleMinChange(min, key) }
         uniqueKey={ key }
+        unit={ unit }
         min={ min }
         max={ max }
         step={ step }

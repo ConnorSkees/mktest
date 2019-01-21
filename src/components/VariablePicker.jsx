@@ -112,6 +112,7 @@ class VariablePicker extends Component {
         <div className={ 'variable-label' } >Unit:</div>
         <Cascader
           size={'small'}
+          value={ this.props.value }
           options={options}
           placeholder="Please select"
           displayRender={displayRender}

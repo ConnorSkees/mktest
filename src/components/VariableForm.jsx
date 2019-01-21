@@ -15,11 +15,6 @@ class VariableForm extends Component {
     this.props.onStepChange(step, this.props.uniqueKey)
   }
 
-  handleChange = value => {
-    let unit = value.slice(-1)[0]
-    this.props.onUnitChange(unit, this.props.uniqueKey)
-  }
-
   render() {
     return (
       <React.Fragment>
