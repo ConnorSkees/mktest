@@ -3,6 +3,15 @@ import { Input, InputNumber, Tooltip, Divider, Form } from 'antd';
 import VariableForm from './VariableForm'
 import VariablePicker from './VariablePicker'
 
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index+1) + replacement+ this.substr(index + replacement.length);
+}
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+
 class QuestionInput extends Component {
   constructor(props){
     super(props);
@@ -13,18 +22,36 @@ class QuestionInput extends Component {
   }
 
   handleChange = event => {
-    let { value } = event.target;
+    let { value, selectionStart, selectionEnd } = event.target;
     this.setState({ value });
     this.parseVariableNames(value);
   }
 
+  handleKeyUp = event => {
+    // let { selectionStart, selectionEnd, value } = event.target;
+    // console.log(event.key)
+    // if (event.key === '['){
+    //   event.preventDefault();
+    //   if (selectionStart < selectionEnd){
+    //
+    //   } else {
+    //     value = value.replaceAt(selectionStart-1, '}')
+    //   }
+    // }
+    // console.log('keydown', value)
+    // event.target.setSelectionRange(selectionStart, selectionStart)
+    // this.setState({ value })
+    // event.target.setSelectionRange(selectionStart, selectionStart)
+  }
+
   parseVariableNames(value) {
-    let variableRegex = /\{.*?\}/g;
+    let variableRegex = /\{[^\{]*?\}/g;
     let matches = value.match(variableRegex);
+    // console.log(matches)
     if (matches){
       matches = [...new Set(matches)]
       let counter = -1;
-      matches = matches.map(m => m.replace("{", "").replace("}", "")).filter(x => x.indexOf("{") === -1);
+      matches = matches.map(m => m.replaceAll("{", "").replaceAll("}", ""));
 
       let variables = []
 
@@ -35,12 +62,15 @@ class QuestionInput extends Component {
           let match = this.state.variables.filter(k => k.name == m)
 
           if (match.length > 0){
+            console.log('same', match[0])
+            match[0].key = counter;
             // variable already exists, so we just return it
             variables.push(match[0])
 
           } else{
+            console.log('new', counter, m)
             // new variable, so we must make a new blank version
-            variables.push({ key: counter, name: m })
+            variables.push({ key: counter, name: m, step: 1, min: 0, unit: 'none' })
           }
 
         } else {
@@ -65,13 +95,33 @@ class QuestionInput extends Component {
     }
   }
 
-  createVariable(item) {
-    let { name, min, max, step } = item;
+  handleUnitChange = (unit, key) => {
+    let variables = this.state.variables.filter(k => k.key == key)[0];
+    variables.unit = unit;
+    this.setState({ variables: variables&&this.state.variables })
+  }
+
+  handleStepChange = (step, key) => {
+    let variable = this.state.variables.filter(k => k.key == key)[0];
+    variable.step = step;
+    this.setState({ variables: variable&&this.state.variables })
+  }
+
+  handleMinChange = (min, key) => {
+    let variable = this.state.variables.filter(k => k.key == key)[0];
+    variable.min = min;
+    this.setState({ variables: variable&&this.state.variables })
+  }
+
   renderVariable(item) {
     let { name, min, max, step, key } = item;
 
     return (
       <VariableForm
+        onUnitChange={(unit, key) => this.handleUnitChange(unit, key) }
+        onStepChange={(step, key) => this.handleStepChange(step, key) }
+        onMinChange={(min, key) => this.handleMinChange(min, key) }
+        uniqueKey={ key }
         min={ min }
         max={ max }
         step={ step }
@@ -88,7 +138,7 @@ class QuestionInput extends Component {
         <Input
           value={ this.state.value }
           onChange={event => this.handleChange(event) }
-          onBlur={event => this.handleChange(event) }
+          onKeyUp={event => this.handleKeyUp(event)}
           />
         <Form>
           {variables}

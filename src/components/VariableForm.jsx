@@ -9,17 +9,15 @@ class VariableForm extends Component {
     min: this.props.min || 0,
     max: this.props.max || 0,
     step: this.props.step || 1,
-    unit: '',
   };
 
   handleStepChange = step => {
-    this.setState({ step })
+    this.props.onStepChange(step, this.props.uniqueKey)
   }
 
   handleChange = value => {
     let unit = value.slice(-1)[0]
-    this.setState({ unit })
-    console.log(unit)
+    this.props.onUnitChange(unit, this.props.uniqueKey)
   }
 
   render() {
@@ -29,26 +27,30 @@ class VariableForm extends Component {
         <div>
           <div className={ 'variable-label' } style={{  }}>Min:</div>
           <InputNumber
-            addonBefore={ 'Min:' }
+            value={ this.props.min }
+            onChange={min => this.props.onMinChange(min, this.props.uniqueKey) }
             size={'small'}
-            step={ this.state.step }
+            step={ this.props.step }
             style={{ width: '50%', marginLeft: '3%' }} />
         </div>
         <div>
           <div className={ 'variable-label' } >Max:</div>
           <InputNumber
+            value={ this.props.max }
+            onChange={ this.props.onMaxChange }
             size={'small'}
-            step={ this.state.step }
+            step={ this.props.step }
             style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
         </div>
         <div>
           <div className={ 'variable-label' } >Step:</div>
           <InputNumber
             size={'small'}
+            value={ this.props.step }
             onChange={ this.handleStepChange }
             style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
         </div>
-        <VariablePicker onChange={value => this.handleChange(value) } />
+        <VariablePicker value={ this.props.unit } onChange={value => this.handleChange(value) } />
       </React.Fragment>
     )
   };

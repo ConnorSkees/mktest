@@ -103,7 +103,9 @@ const displayRender = (labels, selectedOptions) => labels.map((label, i) => {
 });
 
 class VariablePicker extends Component {
-  state = {};
+  state = {
+    isMetric: true
+  };
   render() {
     return (
       <div>
@@ -117,7 +119,7 @@ class VariablePicker extends Component {
           style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
         <br />
         <div className={ 'variable-label' } style={{ width: '135px' }}>Metric Prefixes:</div>
-        <Switch size="small" defaultChecked />
+        <Switch size="small" checked={this.state.isMetric} />
       </div>
     )
   };
