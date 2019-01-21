@@ -70,7 +70,7 @@ class QuestionInput extends Component {
           } else{
             console.log('new', counter, m)
             // new variable, so we must make a new blank version
-            variables.push({ key: counter, name: m, step: 1, min: 0, unit: [] })
+            variables.push({ key: counter, name: m, step: 1, min: 0, max: 0, unit: [] })
           }
 
         } else {
@@ -113,6 +113,12 @@ class QuestionInput extends Component {
     this.setState({ variables: variable&&this.state.variables })
   }
 
+  handleMaxChange = (max, key) => {
+    let variable = this.state.variables.filter(k => k.key == key)[0];
+    variable.max = max;
+    this.setState({ variables: variable&&this.state.variables })
+  }
+
   renderVariable(item) {
     let { name, min, max, step, key, unit } = item;
 
@@ -121,6 +127,7 @@ class QuestionInput extends Component {
         onUnitChange={(unit, key) => this.handleUnitChange(unit, key) }
         onStepChange={(step, key) => this.handleStepChange(step, key) }
         onMinChange={(min, key) => this.handleMinChange(min, key) }
+        onMaxChange={(max, key) => this.handleMaxChange(max, key) }
         uniqueKey={ key }
         unit={ unit }
         min={ min }
