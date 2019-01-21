@@ -45,7 +45,7 @@ class VariableForm extends Component {
             onChange={ this.handleStepChange }
             style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
         </div>
-        <VariablePicker value={ this.props.unit } onChange={value => this.handleChange(value) } />
+        <VariablePicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
       </React.Fragment>
     )
   };
