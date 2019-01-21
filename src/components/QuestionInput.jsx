@@ -47,7 +47,7 @@ class QuestionInput extends Component {
   parseVariableNames(value) {
     let variableRegex = /\{[^\{]*?\}/g;
     let matches = value.match(variableRegex);
-    // console.log(matches)
+
     if (matches){
       matches = [...new Set(matches)]
       let counter = -1;
