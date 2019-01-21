@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Input, InputNumber, Tooltip, Divider, Form } from 'antd';
 import VariableForm from './VariableForm'
 import VariablePicker from './VariablePicker'
+import NameInput from './NameInput'
+import ObjectInput from './ObjectInput'
 
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index+1) + replacement+ this.substr(index + replacement.length);
@@ -122,6 +124,13 @@ class QuestionInput extends Component {
   renderVariable(item) {
     let { name, min, max, step, key, unit } = item;
 
+    let nameRegex = /^name(\d*)$/gi;
+    let match = nameRegex.exec(name);
+
+    if (match){
+      return <NameInput number={match[1]} />
+    }
+
     return (
       <VariableForm
         onUnitChange={(unit, key) => this.handleUnitChange(unit, key) }
@@ -133,7 +142,8 @@ class QuestionInput extends Component {
         min={ min }
         max={ max }
         step={ step }
-        name={ name } />
+        name={ name }
+      />
     )
   }
 
