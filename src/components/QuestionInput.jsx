@@ -124,7 +124,7 @@ class QuestionInput extends Component {
   renderVariable(item) {
     let { name, min, max, step, key, unit } = item;
 
-    let nameRegex = /^name(\d*)$/gi;
+    let nameRegex = /^name\s*(\d*)$/gi;
     let match = nameRegex.exec(name);
 
     if (match){
