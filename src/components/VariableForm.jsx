@@ -26,7 +26,8 @@ class VariableForm extends Component {
             onChange={min => this.props.onMinChange(min, this.props.uniqueKey) }
             size={'small'}
             step={ this.props.step }
-            style={{ width: '50%', marginLeft: '3%' }} />
+            style={{ width: '50%', marginLeft: '3%' }}
+          />
         </div>
         <div>
           <div className={ 'variable-label' } >Max:</div>
