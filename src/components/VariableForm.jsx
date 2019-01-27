@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, InputNumber, Tooltip, Divider, Form, Switch } from 'antd';
+import { InputNumber, Divider } from 'antd';
 import VariablePicker from './VariablePicker'
 
 
