@@ -46,7 +46,12 @@ class NameInput extends Component {
             style={{ width: 200 }}
             placeholder="Select a person"
             optionFilterProp="children"
-            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            filterOption={(input, option) => {
+              let { children } = option.props;
+              children = children.filter(x => x !== undefined)
+              children = children.reduce((a, b) => a+b).toLowerCase();
+              return children.indexOf(input.toLowerCase().trim()) > -1;
+            }}
           >
             {renderedOptions}
           </Select>
