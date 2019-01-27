@@ -7,7 +7,7 @@ function randomChoice(arr) {
 }
 
 const Option = Select.Option;
-const options = [
+let options = [
   {
     firstName: 'Alex',
     lastName: 'Jones',
@@ -21,10 +21,10 @@ const options = [
 
 class NameInput extends Component {
   state = {
-
   };
   render() {
     let key = this.props.key || `${Math.random(1, 300).toString()}n`;
+    options.unshift({firstName: 'Random'});
 
     let renderedOptions = options.map(o => {
       return (
