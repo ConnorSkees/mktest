@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Select, Divider } from 'antd';
 
+
+function randomChoice(arr) {
+   return arr[Math.floor(Math.random() * arr.length)];
+}
+
 const Option = Select.Option;
 const options = [
   {
