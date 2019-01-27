@@ -31,7 +31,7 @@ class NameInput extends Component {
     })
     return (
       <div>
-        <Divider orientation="right">Name</Divider>
+        <Divider orientation="right">Name { this.props.number }</Divider>
         <div className={ 'variable-label' } style={{ width: 50 }} >Name:</div>
           <Select
             showSearch
