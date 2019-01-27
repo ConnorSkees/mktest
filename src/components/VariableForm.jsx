@@ -33,8 +33,8 @@ class VariableForm extends Component {
           <div className={ 'variable-label' } >Max:</div>
           <InputNumber
             value={ this.props.max }
-            onChange={max => this.props.onMaxChange(max, this.props.uniqueKey) }
-            size={'small'}
+            onChange={ max => this.props.onMaxChange(max, this.props.uniqueKey) }
+            size={ 'small' }
             step={ this.props.step }
             style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
         </div>
