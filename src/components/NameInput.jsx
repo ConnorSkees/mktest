@@ -24,16 +24,19 @@ class NameInput extends Component {
 
   };
   render() {
+    let key = this.props.key || `${Math.random(1, 300).toString()}n`;
 
     let renderedOptions = options.map(o => {
       return (
         <Option
           value={`${o.firstName}${o.lastName}${o.graduationYear}`}
+          key={ key }
         >
           {o.firstName} {o.lastName}
 
         </Option>)
     })
+
     return (
       <div>
         <Divider orientation="right">Name { this.props.number }</Divider>

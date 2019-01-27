@@ -36,7 +36,8 @@ class TestCreator extends Component {
 
  addShortAnswer = () => {
    let { questionInputs } = this.state;
-   questionInputs.push(<QuestionInput key={Math.random(1, 300)} />)
+   let key = Math.random(1, 300).toString()
+   questionInputs.push(<QuestionInput ref={this.myRef} key={ key } uniqueKey={ key } />)
    this.setState({ questionInputs })
  }
 
