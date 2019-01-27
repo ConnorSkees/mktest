@@ -3,10 +3,16 @@ import { Card, Button, Collapse } from 'antd';
 import QuestionInput from './QuestionInput'
 
 class TestCreator extends Component {
-  state = {
-    visible: false,
-    questionInputs: [],
-   }
+  constructor(props){
+    super(props);
+    this.state = {
+      visible: false,
+      questionInputs: [],
+     }
+
+    this.myRef = React.createRef();
+  }
+
 
    showModal = () => {
      this.setState({
@@ -33,6 +39,13 @@ class TestCreator extends Component {
    let { questionInputs } = this.state;
    questionInputs.push(<QuestionInput key={Math.random(1, 300)} />)
    this.setState({ questionInputs })
+ }
+
+ handleExport = () => {
+   const val = this.myRef.current;
+   if (val !== null) {
+     val.exportAsJSON();
+   }
  }
 
   render() {
