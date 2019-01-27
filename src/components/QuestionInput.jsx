@@ -43,7 +43,7 @@ class QuestionInput extends Component {
 
       matches.map(m => {
         counter++;
-        if (matches.length != this.state.variables.length){
+        if (matches.length !== this.state.variables.length){
           // new variable created
           let match = this.state.variables.filter(k => k.name === m)
 
@@ -105,16 +105,27 @@ class QuestionInput extends Component {
     this.setState({ variables: variable&&this.state.variables })
   }
 
+  handleNameChange = value => {
+    console.log(value.replaceAll('undefined', ''))
+  }
+
   renderVariable(item) {
-    let { name, min, max, step, key, unit } = item;
+    let { name } = item;
 
     let nameRegex = /^name\s*(\d*)$/gi;
     let match = nameRegex.exec(name);
 
     if (match){
-      return <NameInput number={match[1]} />
+      return (
+        <NameInput
+          key={ Math.random(1, 300).toString() }
+          number={match[1]}
+          name={ name }
+          onNameChange={ value => this.handleNameChange(value) }
+        />)
     }
 
+    let { min, max, step, key, unit } = item;
     return (
       <VariableForm
         onUnitChange={(unit, key) => this.handleUnitChange(unit, key) }
@@ -135,21 +146,31 @@ class QuestionInput extends Component {
     console.log('nothing')
   }
 
+    let { variables } = this.state;
+    return variables;
+  }
+
   render() {
     let { variables } = this.state;
-    let key = Math.random(1, 300).toString();
-    // console.log('variables', variables)
+    let key = this.props.uniqueKey;
+    // console.log('variables', JSON.stringify(variables));
     variables = variables.map(v => this.renderVariable(v));
     return (
-      <Collapse bordered={false} onChange={event => this.doNothing(event) }>
+      <Collapse bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
         <Panel
-          header={<Input.TextArea
-                    autosize={ true }
-                    value={ this.state.value }
-                    onChange={ event => this.handleChange(event) }
-                  />}
+          header={
+            <div>
+              <Input.TextArea
+                  autosize={ true }
+                  value={ this.state.value }
+                  onChange={ event => this.handleChange(event) }
+                  key={ key+'i' }
+                  style={{ width: '80%', display: 'inline-block' }}
+                />
+              <Button>Solve</Button>
+              </div>}
 
-          key={ key }>
+          key={ key+'p' }>
           <Form>
             {variables}
           </Form>
