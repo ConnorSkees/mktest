@@ -29,23 +29,6 @@ class QuestionInput extends Component {
     this.parseVariableNames(value);
   }
 
-  handleKeyUp = event => {
-    // let { selectionStart, selectionEnd, value } = event.target;
-    // console.log(event.key)
-    // if (event.key === '['){
-    //   event.preventDefault();
-    //   if (selectionStart < selectionEnd){
-    //
-    //   } else {
-    //     value = value.replaceAt(selectionStart-1, '}')
-    //   }
-    // }
-    // console.log('keydown', value)
-    // event.target.setSelectionRange(selectionStart, selectionStart)
-    // this.setState({ value })
-    // event.target.setSelectionRange(selectionStart, selectionStart)
-  }
-
   parseVariableNames(value) {
     let variableRegex = /\{[^\{]*?\}/g;
     let matches = value.match(variableRegex);
@@ -157,7 +140,6 @@ class QuestionInput extends Component {
           autosize={ true }
           value={ this.state.value }
           onChange={event => this.handleChange(event) }
-          onKeyUp={event => this.handleKeyUp(event)}
           />
         <Form>
           {variables}
