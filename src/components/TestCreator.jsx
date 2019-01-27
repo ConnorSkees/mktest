@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Input, InputNumber, Tooltip, Divider, Form, Switch, Card, Button, Modal, Collapse } from 'antd';
+import { Card, Button, Collapse } from 'antd';
 import QuestionInput from './QuestionInput'
-
-const Panel = Collapse.Panel;
 
 class TestCreator extends Component {
   state = {

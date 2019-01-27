@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { InputNumber, Divider } from 'antd';
+import { Input, InputNumber, Divider } from 'antd';
 import VariablePicker from './VariablePicker'
 
+const InputGroup = Input.Group;
 
 class VariableForm extends Component {
   state = {

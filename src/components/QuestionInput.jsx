@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Input, InputNumber, Tooltip, Divider, Form, Collapse } from 'antd';
+import { Button, Input, Form, Collapse } from 'antd';
 import VariableForm from './VariableForm'
-import VariablePicker from './VariablePicker'
 import NameInput from './NameInput'
 import ObjectInput from './ObjectInput'
 

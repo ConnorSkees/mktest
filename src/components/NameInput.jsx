@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Select, Divider } from 'antd';
+import { Select, Divider } from 'antd';
 
 
 function randomChoice(arr) {
