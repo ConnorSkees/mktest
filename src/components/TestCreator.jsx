@@ -39,19 +39,24 @@ class TestCreator extends Component {
     let { questionInputs } = this.state;
     console.log(questionInputs);
     return (
+      <Card
+        title="Example Test #1"
+        extra={<Button onClick={() => this.handleExport() } type="dashed">Export</Button>}
+        style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}
+      >
       <div>
         <Button type="primary" style={{ float: 'right' }} onClick={ () => this.addShortAnswer() }>
           +
         </Button>
-
         <Card
           title="Short Answer Question"
-          extra={<a href="#">Actions</a>}
-          style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}
+          extra={<div></div>}
+          style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
           >
             { this.state.questionInputs }
         </Card>
       </div>
+    </Card>
 
     )
   };

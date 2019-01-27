@@ -13,14 +13,7 @@ const mountNode = document.getElementById('root');
 
 ReactDOM.render(
   (
-    <Card
-      title="Short Answer Question"
-      extra={<a href="#">Actions</a>}
-      style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}
-    >
-      <TestCreator />
-    </Card>
-
+    <TestCreator />
   ), mountNode);
 
 // If you want your app to work offline and load faster, you can change
