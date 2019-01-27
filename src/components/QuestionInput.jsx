@@ -61,7 +61,7 @@ class QuestionInput extends Component {
         counter++;
         if (matches.length != this.state.variables.length){
           // new variable created
-          let match = this.state.variables.filter(k => k.name == m)
+          let match = this.state.variables.filter(k => k.name === m)
 
           if (match.length > 0){
             console.log('same', match[0])
@@ -77,8 +77,8 @@ class QuestionInput extends Component {
 
         } else {
           // unrelated update or a rename
-          let nameMatch = this.state.variables.filter(k => k.name == m);
-          let counterMatch = this.state.variables.filter(k => k.key == counter);
+          let nameMatch = this.state.variables.filter(k => k.name === m);
+          let counterMatch = this.state.variables.filter(k => k.key === counter);
 
           if (nameMatch.length > 0){
             // name was found, was not renamed
@@ -98,25 +98,25 @@ class QuestionInput extends Component {
   }
 
   handleUnitChange = (unit, key) => {
-    let variables = this.state.variables.filter(k => k.key == key)[0];
+    let variables = this.state.variables.filter(k => k.key === key)[0];
     variables.unit = unit;
     this.setState({ variables: variables&&this.state.variables })
   }
 
   handleStepChange = (step, key) => {
-    let variable = this.state.variables.filter(k => k.key == key)[0];
+    let variable = this.state.variables.filter(k => k.key === key)[0];
     variable.step = step;
     this.setState({ variables: variable&&this.state.variables })
   }
 
   handleMinChange = (min, key) => {
-    let variable = this.state.variables.filter(k => k.key == key)[0];
+    let variable = this.state.variables.filter(k => k.key === key)[0];
     variable.min = min;
     this.setState({ variables: variable&&this.state.variables })
   }
 
   handleMaxChange = (max, key) => {
-    let variable = this.state.variables.filter(k => k.key == key)[0];
+    let variable = this.state.variables.filter(k => k.key === key)[0];
     variable.max = max;
     this.setState({ variables: variable&&this.state.variables })
   }
