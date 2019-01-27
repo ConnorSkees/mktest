@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import QuestionInput from './components/QuestionInput';
+import TestCreator from './components/TestCreator';
 import * as serviceWorker from './serviceWorker';
 import { Card } from 'antd';
 
@@ -14,11 +14,11 @@ const mountNode = document.getElementById('root');
 ReactDOM.render(
   (
     <Card
-      title="Questions"
+      title="Short Answer Question"
       extra={<a href="#">Actions</a>}
-      style={{ width: 300, marginLeft: 'auto', marginRight: 'auto' }}
+      style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}
     >
-      <QuestionInput />
+      <TestCreator />
     </Card>
 
   ), mountNode);
