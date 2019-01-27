@@ -31,13 +31,13 @@ class QuestionInput extends Component {
   }
 
   parseVariableNames(value) {
-    let variableRegex = /\{[^\{]*?\}/g;
+    let variableRegex = /\[[^\[]*?\]/g;
     let matches = value.match(variableRegex);
 
     if (matches){
       matches = [...new Set(matches)]
       let counter = -1;
-      matches = matches.map(m => m.replaceAll("{", "").replaceAll("}", ""));
+      matches = matches.map(m => m.replaceAll(/\[/, "").replaceAll(/\]/, ""));
 
       let variables = []
 
@@ -146,6 +146,7 @@ class QuestionInput extends Component {
     console.log('nothing')
   }
 
+  exportAsJSON() {
     let { variables } = this.state;
     return variables;
   }
