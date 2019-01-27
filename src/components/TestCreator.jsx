@@ -35,7 +35,6 @@ class TestCreator extends Component {
    }
 
  addShortAnswer = () => {
-   console.log('clicked!')
    let { questionInputs } = this.state;
    questionInputs.push(<QuestionInput key={Math.random(1, 300)} />)
    this.setState({ questionInputs })
@@ -50,7 +49,6 @@ class TestCreator extends Component {
 
   render() {
     let { questionInputs } = this.state;
-    console.log(questionInputs);
     return (
       <Card
         title="Example Test #1"
