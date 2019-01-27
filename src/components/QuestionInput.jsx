@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Input, InputNumber, Tooltip, Divider, Form } from 'antd';
+import { Input, InputNumber, Tooltip, Divider, Form, Collapse } from 'antd';
 import VariableForm from './VariableForm'
 import VariablePicker from './VariablePicker'
 import NameInput from './NameInput'
 import ObjectInput from './ObjectInput'
+
+const Panel = Collapse.Panel;
 
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index+1) + replacement+ this.substr(index + replacement.length);
@@ -130,21 +132,30 @@ class QuestionInput extends Component {
     )
   }
 
+  doNothing = event => {
+    console.log('nothing')
+  }
+
   render() {
     let { variables } = this.state;
+    let key = Math.random(1, 300).toString();
     // console.log('variables', variables)
     variables = variables.map(v => this.renderVariable(v));
     return (
-      <div>
-        <Input.TextArea
-          autosize={ true }
-          value={ this.state.value }
-          onChange={event => this.handleChange(event) }
-          />
-        <Form>
-          {variables}
-        </Form>
-      </div>
+      <Collapse bordered={false} onChange={event => this.doNothing(event) }>
+        <Panel
+          header={<Input.TextArea
+                    autosize={ true }
+                    value={ this.state.value }
+                    onChange={ event => this.handleChange(event) }
+                  />}
+
+          key={ key }>
+          <Form>
+            {variables}
+          </Form>
+        </Panel>
+      </Collapse>
 
     )
   };
