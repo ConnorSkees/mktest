@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'antd';
+import { Card, Button, Icon } from 'antd';
 import QuestionInput from './QuestionInput'
 import Disappear from './Disappear'
 
@@ -86,7 +86,7 @@ class TestCreator extends Component {
         <Card
           title="Short Answer Question"
           extra={<Button type="primary" style={{ float: 'right' }} onClick={ () => this.addShortAnswer() }>
-            +
+            <Icon type="plus" />
           </Button>}
           style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
           >
