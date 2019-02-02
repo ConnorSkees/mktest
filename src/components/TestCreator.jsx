@@ -66,12 +66,11 @@ class TestCreator extends Component {
         style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}
       >
       <div>
-        <Button type="primary" style={{ float: 'right' }} onClick={ () => this.addShortAnswer() }>
-          +
-        </Button>
         <Card
           title="Short Answer Question"
-          extra={<div></div>}
+          extra={<Button type="primary" style={{ float: 'right' }} onClick={ () => this.addShortAnswer() }>
+            +
+          </Button>}
           style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
           >
             { this.state.questionInputs }
