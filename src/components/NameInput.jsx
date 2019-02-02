@@ -10,6 +10,11 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
+const DividerStyle = {
+  fontFamily: "'Libre Baskerville', serif",
+  fontSize: '2em'
+}
+
 const Option = Select.Option;
 let options = [
   {
@@ -45,7 +50,7 @@ class NameInput extends Component {
 
     return (
       <div>
-        <Divider orientation="right">Name { this.props.number }</Divider>
+        <Divider style={ DividerStyle } orientation="right">Name { this.props.number }</Divider>
         <div className={ 'variable-label' } style={{ width: 50 }} >Name:</div>
           <Select
             showSearch

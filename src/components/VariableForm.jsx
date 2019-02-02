@@ -4,6 +4,11 @@ import VariablePicker from './VariablePicker'
 
 const InputGroup = Input.Group;
 
+const DividerStyle = {
+  fontFamily: "'Libre Baskerville', serif",
+  fontSize: '2em'
+}
+
 class VariableForm extends Component {
   state = {
     name: this.props.name,
@@ -20,7 +25,7 @@ class VariableForm extends Component {
     return (
       <React.Fragment>
       <InputGroup compact>
-        <Divider orientation="left">{ this.props.name }</Divider>
+        <Divider style={ DividerStyle } orientation="left">{ this.props.name }</Divider>
         <div>
           <div className={ 'variable-label' }>Min:</div>
           <InputNumber
