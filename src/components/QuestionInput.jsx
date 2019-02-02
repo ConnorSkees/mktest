@@ -14,6 +14,13 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
+const TextAreaStyle = {
+  width: '80%',
+  display: 'inline-block',
+  border: 'none',
+  fontFamily: "'Sarabun', sans-serif",
+  fontSize: '2em',
+}
 
 class QuestionInput extends Component {
   constructor(props){
@@ -172,10 +179,11 @@ class QuestionInput extends Component {
                   value={ this.state.value }
                   onChange={ event => this.handleChange(event) }
                   key={ key+'i' }
-                  style={{ width: '80%', display: 'inline-block', border: 'none', }}
+                  style={ TextAreaStyle }
                   onFocus={() => this.setState({ isFocused: true }) }
                 />
               <Button
+                size='large'
                 style={{ float: 'right', display: 'inline-block' }}
                 onClick={() => this.setState({ isFocused: !isFocused }) }>
                 { isFocused ? 'Hide' : 'Show' }
