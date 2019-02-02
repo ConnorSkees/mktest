@@ -15,6 +15,12 @@ class TestCreator extends Component {
     this.myRef = React.createRef();
   }
 
+  componentWillMount(){
+    let { questionInputs } = this.state;
+    if (questionInputs.length === 0){
+      this.addShortAnswer();
+    }
+  }
 
    showModal = () => {
      this.setState({
@@ -51,12 +57,8 @@ class TestCreator extends Component {
  }
 
   render() {
-    var { questionInputs } = this.state;
-    if (!questionInputs){
-      this.addShortAnswer();
-      questionInputs = this.state.questionInputs;
-    }
-    console.log('variables', JSON.stringify(questionInputs));
+    let { questionInputs } = this.state;
+
     return (
       <Card
         title="Example Test #1"
