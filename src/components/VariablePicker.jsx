@@ -106,23 +106,29 @@ class VariablePicker extends Component {
   state = {
     isMetric: true
   };
+
+  filter(input, path){
+    return (path.some(option => (option.label).indexOf(toTitleCase(input)) > -1));
+  }
+  // <div className={ 'variable-label' } >Unit:</div>
   render() {
     return (
       <div>
-        <div className={ 'variable-label' } >Unit:</div>
         <Cascader
-          size={'small'}
+          size={ 'large' }
           value={ this.props.value }
           options={options}
-          placeholder="Please select"
+          placeholder="Unit"
           displayRender={displayRender}
           onChange={value => this.props.onChange(value) }
-          style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
-        <br />
-        <div className={ 'variable-label' } style={{ width: '135px' }}>Metric Prefixes:</div>
-        <Switch size="small" checked={this.state.isMetric} />
+          style={{ fontSize: '1.25em', width: '70%' }}
+          showSearch={{ filter: this.filter }}
+        />
       </div>
     )
+    // <br />
+    // <div className={ 'variable-label' } style={{ width: '135px' }}>Metric Prefixes:</div>
+    // <Switch size="default" checked={this.state.isMetric} />
   };
 }
 
