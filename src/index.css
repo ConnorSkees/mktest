@@ -15,5 +15,5 @@ code {
 
 .variable-label {
   width: 30px;
-  display: inline-block;
+  /* display: inline-block; */
 }

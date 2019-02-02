@@ -5,6 +5,10 @@ import { Select, Divider } from 'antd';
 function randomChoice(arr) {
    return arr[Math.floor(Math.random() * arr.length)];
 }
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 
 const Option = Select.Option;
 let options = [
@@ -24,12 +28,14 @@ class NameInput extends Component {
   };
   render() {
     let key = this.props.key || `${Math.random(1, 300).toString()}n`;
-    options.unshift({firstName: 'Random'});
+    if (options[0].firstName !== "Random") {
+      options.unshift({firstName: 'Random'});
+    }
 
     let renderedOptions = options.map(o => {
       return (
         <Option
-          value={`${o.firstName}${o.lastName}${o.graduationYear}`}
+          value={`${o.firstName} ${o.lastName}${o.graduationYear}`}
           key={ key }
         >
           {o.firstName} {o.lastName}
@@ -44,6 +50,7 @@ class NameInput extends Component {
           <Select
             showSearch
             style={{ width: 200 }}
+            onChange={value => this.props.onNameChange(value) }
             placeholder="Select a person"
             optionFilterProp="children"
             filterOption={(input, option) => {

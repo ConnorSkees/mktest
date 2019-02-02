@@ -7,7 +7,9 @@ class TestCreator extends Component {
     super(props);
     this.state = {
       visible: false,
-      questionInputs: [],
+      questionInputs: [
+
+       ],
      }
 
     this.myRef = React.createRef();
@@ -49,7 +51,12 @@ class TestCreator extends Component {
  }
 
   render() {
-    let { questionInputs } = this.state;
+    var { questionInputs } = this.state;
+    if (!questionInputs){
+      this.addShortAnswer();
+      questionInputs = this.state.questionInputs;
+    }
+    console.log('variables', JSON.stringify(questionInputs));
     return (
       <Card
         title="Example Test #1"

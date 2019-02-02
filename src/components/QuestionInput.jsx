@@ -175,7 +175,11 @@ class QuestionInput extends Component {
                   style={{ width: '80%', display: 'inline-block', border: 'none', }}
                   onFocus={() => this.setState({ isFocused: true }) }
                 />
-              <Button style={{ float: 'right' }} onClick={() => this.setState({ isFocused: !isFocused }) }>{ isFocused ? 'Hide' : 'Show' }</Button>
+              <Button
+                style={{ float: 'right', display: 'inline-block' }}
+                onClick={() => this.setState({ isFocused: !isFocused }) }>
+                { isFocused ? 'Hide' : 'Show' }
+              </Button>
               </div>}
 
           key={ key+'p' }>

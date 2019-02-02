@@ -16,38 +16,41 @@ class VariableForm extends Component {
     this.props.onStepChange(step, this.props.uniqueKey)
   }
 
-  render() {
+  render() {//  style={{ width: '50%', marginLeft: '3%' }} //style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} //style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }}
     return (
       <React.Fragment>
+      <InputGroup compact>
         <Divider orientation="left">{ this.props.name }</Divider>
         <div>
-          <div className={ 'variable-label' } style={{  }}>Min:</div>
+          <div className={ 'variable-label' }>Min:</div>
           <InputNumber
             value={ this.props.min }
             onChange={min => this.props.onMinChange(min, this.props.uniqueKey) }
             size={'small'}
             step={ this.props.step }
-            style={{ width: '50%', marginLeft: '3%' }}
+
           />
         </div>
         <div>
           <div className={ 'variable-label' } >Max:</div>
           <InputNumber
             value={ this.props.max }
+            min={ this.props.min }
             onChange={ max => this.props.onMaxChange(max, this.props.uniqueKey) }
             size={ 'small' }
             step={ this.props.step }
-            style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
-        </div>
+             />
+         </div>
         <div>
           <div className={ 'variable-label' } >Step:</div>
           <InputNumber
             size={'small'}
             value={ this.props.step }
             onChange={ this.handleStepChange }
-            style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} />
-        </div>
-        <VariablePicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
+             />
+         </div>
+       </InputGroup>
+       <VariablePicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
       </React.Fragment>
     )
   };
