@@ -164,6 +164,7 @@ class QuestionInput extends Component {
     return (
       <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
         <Panel
+          showArrow={ false }
           header={
             <div>
               <Input.TextArea
@@ -174,7 +175,7 @@ class QuestionInput extends Component {
                   style={{ width: '80%', display: 'inline-block', border: 'none', }}
                   onFocus={() => this.setState({ isFocused: true }) }
                 />
-              <Button onClick={() => this.setState({ isFocused: !isFocused }) }>{ isFocused ? 'Hide' : 'Show' }</Button>
+              <Button style={{ float: 'right' }} onClick={() => this.setState({ isFocused: !isFocused }) }>{ isFocused ? 'Hide' : 'Show' }</Button>
               </div>}
 
           key={ key+'p' }>
