@@ -175,6 +175,7 @@ class QuestionInput extends Component {
           header={
             <div>
               <Input.TextArea
+                  placeholder={ 'Your question here' }
                   autosize={ true }
                   value={ this.state.value }
                   onChange={ event => this.handleChange(event) }
