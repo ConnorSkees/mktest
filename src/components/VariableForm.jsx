@@ -9,9 +9,20 @@ const DividerStyle = {
   fontSize: '2em'
 }
 
+const InputStyle = {
+  fontSize: '1.25em',
+  width: '80%'
+}
+
+const LabelStyle = {
+  width: '2.5em',
+  fontSize: '1.5em',
+  display: 'inline-block'
+}
+
 class VariableForm extends Component {
   state = {
-    name: this.props.name,
+    name: this.props.name || '',
     min: this.props.min || 0,
     max: this.props.max || 0,
     step: this.props.step || 1,
@@ -21,41 +32,50 @@ class VariableForm extends Component {
     this.props.onStepChange(step, this.props.uniqueKey)
   }
 
-  render() {//  style={{ width: '50%', marginLeft: '3%' }} //style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }} //style={{ width: '50%', marginTop: '5%', marginLeft: '3%' }}
+  render() {
+    const InputSize = 'large'
     return (
       <React.Fragment>
-      <InputGroup compact>
+      <InputGroup style={{ textAlign: 'center' }}>
         <Divider style={ DividerStyle } orientation="left">{ this.props.name }</Divider>
         <div>
-          <div className={ 'variable-label' }>Min:</div>
+          <span style={ LabelStyle }>Min: </span>
           <InputNumber
             value={ this.props.min }
             onChange={min => this.props.onMinChange(min, this.props.uniqueKey) }
-            size={'small'}
+            size={ InputSize }
             step={ this.props.step }
-
+            style={ InputStyle }
+            formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            parser={value => value.replace(/(,*)/g, '')}
           />
         </div>
         <div>
-          <div className={ 'variable-label' } >Max:</div>
+          <span style={ LabelStyle } >Max: </span>
           <InputNumber
             value={ this.props.max }
             min={ this.props.min }
             onChange={ max => this.props.onMaxChange(max, this.props.uniqueKey) }
-            size={ 'small' }
+            size={ InputSize }
             step={ this.props.step }
+            style={ InputStyle }
+            formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            parser={value => value.replace(/(,*)/g, '')}
              />
          </div>
         <div>
-          <div className={ 'variable-label' } >Step:</div>
+          <span style={ LabelStyle }>Step: </span>
           <InputNumber
-            size={'small'}
+            size={ InputSize }
             value={ this.props.step }
             onChange={ this.handleStepChange }
+            style={ InputStyle }
+            formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            parser={value => value.replace(/(,*)/g, '')}
              />
          </div>
+         <VariablePicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
        </InputGroup>
-       <VariablePicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
       </React.Fragment>
     )
   };
