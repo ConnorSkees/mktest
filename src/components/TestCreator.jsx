@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'antd';
 import QuestionInput from './QuestionInput'
+import Disappear from './Disappear'
+
 
 function sleep(seconds) {
   return new Promise(resolve => {
@@ -60,7 +62,7 @@ class TestCreator extends Component {
  addShortAnswer = () => {
    let { questionInputs } = this.state;
    let key = Math.random(1, 300).toString()
-   questionInputs.push(<QuestionInput onDelete={() => this.handleDelete(key)} ref={this.myRef} key={ key } uniqueKey={ key } />)
+   questionInputs.push(<Disappear><QuestionInput onDelete={() => this.handleDelete(key)} ref={this.myRef} key={ key } uniqueKey={ key } /></Disappear>)
    this.setState({ questionInputs })
  }
 
@@ -76,7 +78,7 @@ class TestCreator extends Component {
 
     return (
       <Card
-        title="Example Test #1"
+        title={ 'Test Test #1' }
         extra={<Button onClick={() => this.handleExport() } type="dashed">Export</Button>}
         style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto' }}
       >
