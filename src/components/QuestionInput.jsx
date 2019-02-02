@@ -194,6 +194,13 @@ class QuestionInput extends Component {
                 onClick={() => this.setState({ isFocused: !isFocused }) }>
                 { isFocused ? 'Hide' : 'Show' }
               </Button>
+              <Button
+                size='large'
+                type='danger'
+                style={{ ...ButtonStyle, display: 'inline-block' }}
+                >
+                -
+              </Button>
               </div>}
 
           key={ key+'p' }>
