@@ -58,11 +58,11 @@ class QuestionInput extends Component {
           if (match.length > 0){
             match[0].key = counter;
             // variable already exists, so we just return it
-            variables.push(match[0])
+            variables.push(match[0]);
 
           } else{
             // new variable, so we must make a new blank version
-            variables.push({ key: counter, name: m, step: 1, min: 0, max: 0, unit: [] })
+            variables.push({ key: counter, name: m, step: 1, min: 0, max: 0, unit: [] });
           }
 
         } else {
@@ -72,43 +72,43 @@ class QuestionInput extends Component {
 
           if (nameMatch.length > 0){
             // name was found, was not renamed
-            variables.push(nameMatch[0])
+            variables.push(nameMatch[0]);
 
           } else if (counterMatch.length > 0){
             // name not found, so it must've been renamed
             counterMatch[0].name = m;
-            variables.push(counterMatch[0])
+            variables.push(counterMatch[0]);
           }
         }
       });
-      this.setState({ variables })
+      this.setState({ variables });
     } else {
-      this.setState({ variables: [] })
+      this.setState({ variables: [] });
     }
   }
 
   handleUnitChange = (unit, key) => {
     let variables = this.state.variables.filter(k => k.key === key)[0];
     variables.unit = unit;
-    this.setState({ variables: variables&&this.state.variables })
+    this.setState({ variables: variables&&this.state.variables });
   }
 
   handleStepChange = (step, key) => {
     let variable = this.state.variables.filter(k => k.key === key)[0];
     variable.step = step;
-    this.setState({ variables: variable&&this.state.variables })
+    this.setState({ variables: variable&&this.state.variables });
   }
 
   handleMinChange = (min, key) => {
     let variable = this.state.variables.filter(k => k.key === key)[0];
     variable.min = min;
-    this.setState({ variables: variable&&this.state.variables })
+    this.setState({ variables: variable&&this.state.variables });
   }
 
   handleMaxChange = (max, key) => {
     let variable = this.state.variables.filter(k => k.key === key)[0];
     variable.max = max;
-    this.setState({ variables: variable&&this.state.variables })
+    this.setState({ variables: variable&&this.state.variables });
   }
 
   handleNameChange = (name, key) => {
@@ -117,8 +117,8 @@ class QuestionInput extends Component {
     delete variable.max;
     delete variable.step;
     delete variable.unit;
-    variable.nameValue = name.replaceAll('undefined', '')
-    this.setState({ variables: variable&&this.state.variables })
+    variable.nameValue = name.replaceAll('undefined', '');
+    this.setState({ variables: variable&&this.state.variables });
   }
 
   renderVariable(item) {
@@ -155,7 +155,7 @@ class QuestionInput extends Component {
   }
 
   doNothing = event => {
-    console.log('nothing')
+    console.log('nothing');
   }
 
   exportAsJSON() {

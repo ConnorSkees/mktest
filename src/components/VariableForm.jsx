@@ -29,11 +29,11 @@ class VariableForm extends Component {
   };
 
   handleStepChange = step => {
-    this.props.onStepChange(step, this.props.uniqueKey)
+    this.props.onStepChange(step, this.props.uniqueKey);
   }
 
   render() {
-    const InputSize = 'large'
+    const InputSize = 'large';
     return (
       <React.Fragment>
       <InputGroup style={{ textAlign: 'center' }}>
