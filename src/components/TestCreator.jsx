@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { Card, Button } from 'antd';
 import QuestionInput from './QuestionInput'
 
+function sleep(seconds) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, seconds*1000);
+  });
+}
+
 class TestCreator extends Component {
   constructor(props){
     super(props);
@@ -22,30 +30,37 @@ class TestCreator extends Component {
     }
   }
 
-   showModal = () => {
-     this.setState({
-       visible: true,
-     });
-   }
+ showModal = () => {
+   this.setState({
+     visible: true,
+   });
+ }
 
-   handleOk = (e) => {
+ handleOk = (e) => {
+   console.log(e);
+   this.setState({
+     visible: false,
+   });
+ }
+
+ handleCancel = (e) => {
      console.log(e);
      this.setState({
        visible: false,
      });
    }
 
-   handleCancel = (e) => {
-     console.log(e);
-     this.setState({
-       visible: false,
-     });
-   }
+ async handleDelete(key) {
+   var x = await sleep(2);
+   let questionInputs = this.state.questionInputs.filter(k => k.key !== key);
+   console.log(questionInputs)
+   this.setState({ questionInputs })
+ }
 
  addShortAnswer = () => {
    let { questionInputs } = this.state;
    let key = Math.random(1, 300).toString()
-   questionInputs.push(<QuestionInput ref={this.myRef} key={ key } uniqueKey={ key } />)
+   questionInputs.push(<QuestionInput onDelete={() => this.handleDelete(key)} ref={this.myRef} key={ key } uniqueKey={ key } />)
    this.setState({ questionInputs })
  }
 

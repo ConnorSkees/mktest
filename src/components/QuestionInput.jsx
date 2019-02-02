@@ -198,6 +198,7 @@ class QuestionInput extends Component {
                 size='large'
                 type='danger'
                 style={{ ...ButtonStyle, display: 'inline-block' }}
+                onClick={ this.props.onDelete }
                 >
                 -
               </Button>
