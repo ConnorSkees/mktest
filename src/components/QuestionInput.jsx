@@ -21,6 +21,7 @@ class QuestionInput extends Component {
     this.state = {
       value: '',
       variables: [],
+      isFocused: false,
     };
   }
 
@@ -48,13 +49,11 @@ class QuestionInput extends Component {
           let match = this.state.variables.filter(k => k.name === m)
 
           if (match.length > 0){
-            console.log('same', match[0])
             match[0].key = counter;
             // variable already exists, so we just return it
             variables.push(match[0])
 
           } else{
-            console.log('new', counter, m)
             // new variable, so we must make a new blank version
             variables.push({ key: counter, name: m, step: 1, min: 0, max: 0, unit: [] })
           }
@@ -105,12 +104,18 @@ class QuestionInput extends Component {
     this.setState({ variables: variable&&this.state.variables })
   }
 
-  handleNameChange = value => {
-    console.log(value.replaceAll('undefined', ''))
+  handleNameChange = (name, key) => {
+    let variable = this.state.variables.filter(k => k.key === key)[0];
+    delete variable.min;
+    delete variable.max;
+    delete variable.step;
+    delete variable.unit;
+    variable.nameValue = name.replaceAll('undefined', '')
+    this.setState({ variables: variable&&this.state.variables })
   }
 
   renderVariable(item) {
-    let { name } = item;
+    let { name, key } = item;
 
     let nameRegex = /^name\s*(\d*)$/gi;
     let match = nameRegex.exec(name);
@@ -118,14 +123,14 @@ class QuestionInput extends Component {
     if (match){
       return (
         <NameInput
-          key={ Math.random(1, 300).toString() }
+          key={ key }
           number={match[1]}
           name={ name }
-          onNameChange={ value => this.handleNameChange(value) }
+          onNameChange={ (name) => this.handleNameChange(name, key) }
         />)
     }
 
-    let { min, max, step, key, unit } = item;
+    let { min, max, step, unit } = item;
     return (
       <VariableForm
         onUnitChange={(unit, key) => this.handleUnitChange(unit, key) }
@@ -152,12 +157,12 @@ class QuestionInput extends Component {
   }
 
   render() {
-    let { variables } = this.state;
+    let { variables, isFocused } = this.state;
     let key = this.props.uniqueKey;
     // console.log('variables', JSON.stringify(variables));
     variables = variables.map(v => this.renderVariable(v));
     return (
-      <Collapse bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
+      <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
         <Panel
           header={
             <div>
@@ -166,9 +171,10 @@ class QuestionInput extends Component {
                   value={ this.state.value }
                   onChange={ event => this.handleChange(event) }
                   key={ key+'i' }
-                  style={{ width: '80%', display: 'inline-block' }}
+                  style={{ width: '80%', display: 'inline-block', border: 'none', }}
+                  onFocus={() => this.setState({ isFocused: true }) }
                 />
-              <Button>Solve</Button>
+              <Button onClick={() => this.setState({ isFocused: !isFocused }) }>{ isFocused ? 'Hide' : 'Show' }</Button>
               </div>}
 
           key={ key+'p' }>
