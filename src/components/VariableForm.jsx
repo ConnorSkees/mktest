@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, InputNumber, Divider } from 'antd';
-import VariablePicker from './VariablePicker'
+import UnitPicker from './UnitPicker'
 
 const InputGroup = Input.Group;
 
@@ -74,7 +74,7 @@ class VariableForm extends Component {
             parser={value => value.replace(/(,*)/g, '')}
              />
          </div>
-         <VariablePicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
+         <UnitPicker value={ this.props.unit } onChange={value => this.props.onUnitChange(value, this.props.uniqueKey) } />
        </InputGroup>
       </React.Fragment>
     )

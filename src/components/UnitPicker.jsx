@@ -102,7 +102,7 @@ const displayRender = (labels, selectedOptions) => labels.map((label, i) => {
     }
 });
 
-class VariablePicker extends Component {
+class UnitPicker extends Component {
   state = {
     isMetric: true
   };
@@ -132,4 +132,4 @@ class VariablePicker extends Component {
   };
 }
 
-export default VariablePicker;
+export default UnitPicker;
