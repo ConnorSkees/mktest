@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import TestCreator from './components/TestCreator';
 import * as serviceWorker from './serviceWorker';
-import { Button, Card } from 'antd';
 
 import 'antd/dist/antd.css';
 

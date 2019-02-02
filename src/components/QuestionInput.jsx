@@ -33,7 +33,7 @@ class QuestionInput extends Component {
   }
 
   handleChange = event => {
-    let { value, selectionStart, selectionEnd } = event.target;
+    let { value } = event.target;
     this.setState({ value });
     this.parseVariableNames(value);
   }

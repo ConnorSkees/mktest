@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Collapse } from 'antd';
+import { Card, Button } from 'antd';
 import QuestionInput from './QuestionInput'
 
 class TestCreator extends Component {
