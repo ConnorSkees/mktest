@@ -167,6 +167,11 @@ class QuestionInput extends Component {
     let { variables, isFocused } = this.state;
     let key = this.props.uniqueKey;
     // console.log('variables', JSON.stringify(variables));
+    let ButtonStyle = {
+      float: 'right',
+      display: variables.length > 0 ? 'inline-block' : 'none',
+    }
+
     variables = variables.map(v => this.renderVariable(v));
     return (
       <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
@@ -181,11 +186,11 @@ class QuestionInput extends Component {
                   onChange={ event => this.handleChange(event) }
                   key={ key+'i' }
                   style={ TextAreaStyle }
-                  onFocus={() => this.setState({ isFocused: true }) }
+                  onFocus={() => this.setState({ isFocused: variables.length > 0 }) }
                 />
               <Button
                 size='large'
-                style={{ float: 'right', display: 'inline-block' }}
+                style={ ButtonStyle }
                 onClick={() => this.setState({ isFocused: !isFocused }) }>
                 { isFocused ? 'Hide' : 'Show' }
               </Button>
