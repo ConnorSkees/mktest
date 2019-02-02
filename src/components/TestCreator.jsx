@@ -73,7 +73,7 @@ class TestCreator extends Component {
           </Button>}
           style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
           >
-            { this.state.questionInputs }
+            { questionInputs }
         </Card>
       </div>
     </Card>
