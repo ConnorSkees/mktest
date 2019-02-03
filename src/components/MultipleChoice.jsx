@@ -19,12 +19,12 @@ const CollapseStyle = {
   marginBottom: 25
 }
 
-class QuestionInput extends Component {
+class MultipleChoice extends Component {
   constructor(props){
     super(props);
     this.state = {
       value: '',
-      variables: [],
+      choices: [],
       isFocused: false,
       isVisible: true,
     };
@@ -38,16 +38,20 @@ class QuestionInput extends Component {
     this.props.onDelete()
   }
 
+  renderChoices = () => {
+
+  }
+
   render() {
-    let { variables, isFocused, isVisible } = this.state;
+    let { choices, isFocused, isVisible } = this.state;
     let key = this.props.uniqueKey;
-    // console.log('variables', JSON.stringify(variables));
+    // console.log('choices', JSON.stringify(choices));
     let ButtonStyle = {
       float: 'right',
-      display: variables.length > 0 ? 'inline-block' : 'none',
+      display: choices.length > 0 ? 'inline-block' : 'none',
     }
 
-    variables = variables.map(v => this.renderVariable(v));
+    choices = choices.map(v => this.renderVariable(v));
     return (
       <Disappear isVisible={isVisible}>
         <Collapse
@@ -67,7 +71,7 @@ class QuestionInput extends Component {
                     onChange={ event => this.handleChange(event) }
                     key={ key+'i' }
                     style={ TextAreaStyle }
-                    onFocus={() => this.setState({ isFocused: variables.length > 0 }) }
+                    onFocus={() => this.setState({ isFocused: choices.length > 0 }) }
                   />
                 <Button
                   size='large'
@@ -87,7 +91,7 @@ class QuestionInput extends Component {
 
             key={ key+'p' }>
             <Form>
-              {variables}
+              {choices}
             </Form>
           </Panel>
         </Collapse>
@@ -96,4 +100,4 @@ class QuestionInput extends Component {
   };
 }
 
-export default QuestionInput;
+export default MultipleChoice;
