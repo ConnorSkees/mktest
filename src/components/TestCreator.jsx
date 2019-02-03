@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, Icon } from 'antd';
 import QuestionInput from './QuestionInput'
+import MultipleChoice from './MultipleChoice'
 import Disappear from './Disappear'
 
 
