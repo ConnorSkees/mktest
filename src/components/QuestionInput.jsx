@@ -3,6 +3,7 @@ import { Button, Input, Form, Collapse, Icon } from 'antd';
 import VariableForm from './VariableForm'
 import NameInput from './NameInput'
 import ObjectInput from './ObjectInput'
+import Disappear from './Disappear'
 
 const Panel = Collapse.Panel;
 
@@ -29,6 +30,7 @@ class QuestionInput extends Component {
       value: '',
       variables: [],
       isFocused: false,
+      isVisible: true,
     };
   }
 
