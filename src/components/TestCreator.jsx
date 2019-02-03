@@ -62,7 +62,12 @@ class TestCreator extends Component {
  addShortAnswer = () => {
    let { questionInputs } = this.state;
    let key = Math.random(1, 300).toString()
-   questionInputs.push(<Disappear><QuestionInput onDelete={() => this.handleDelete(key)} ref={this.myRef} key={ key } uniqueKey={ key } /></Disappear>)
+   questionInputs.push(<QuestionInput
+                          onDelete={() => this.handleDelete(key)}
+                          ref={this.myRef}
+                          key={ key }
+                          uniqueKey={ key }
+                        />)
    this.setState({ questionInputs })
  }
 
