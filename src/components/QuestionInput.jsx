@@ -23,6 +23,10 @@ const TextAreaStyle = {
   fontSize: '2em',
 }
 
+const CollapseStyle = {
+  marginBottom: 25
+}
+
 class QuestionInput extends Component {
   constructor(props){
     super(props);
@@ -184,7 +188,12 @@ class QuestionInput extends Component {
     variables = variables.map(v => this.renderVariable(v));
     return (
       <Disappear isVisible={isVisible}>
-        <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
+        <Collapse
+          style={ CollapseStyle }
+          activeKey={isFocused ? key+'p' : null}
+          bordered={false}
+          onChange={event => this.doNothing(event) }
+          key={ key+'c' }>
           <Panel
             showArrow={ false }
             header={
