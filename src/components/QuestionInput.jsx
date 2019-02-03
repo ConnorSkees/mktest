@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Form, Collapse } from 'antd';
+import { Button, Input, Form, Collapse, Icon } from 'antd';
 import VariableForm from './VariableForm'
 import NameInput from './NameInput'
 import ObjectInput from './ObjectInput'
@@ -174,43 +174,44 @@ class QuestionInput extends Component {
 
     variables = variables.map(v => this.renderVariable(v));
     return (
-      <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
-        <Panel
-          showArrow={ false }
-          header={
-            <div>
-              <Input.TextArea
-                  placeholder={ 'Your question here' }
-                  autosize={ true }
-                  value={ this.state.value }
-                  onChange={ event => this.handleChange(event) }
-                  key={ key+'i' }
-                  style={ TextAreaStyle }
-                  onFocus={() => this.setState({ isFocused: variables.length > 0 }) }
-                />
-              <Button
-                size='large'
-                style={ ButtonStyle }
-                onClick={() => this.setState({ isFocused: !isFocused }) }>
-                { isFocused ? 'Hide' : 'Show' }
-              </Button>
-              <Button
-                size='large'
-                type='danger'
-                style={{ ...ButtonStyle, display: 'inline-block' }}
-                onClick={ this.props.onDelete }
-                >
-                -
-              </Button>
-              </div>}
+      <Disappear isVisible={true}>
+        <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
+          <Panel
+            showArrow={ false }
+            header={
+              <div>
+                <Input.TextArea
+                    placeholder={ 'Your question here' }
+                    autosize={ true }
+                    value={ this.state.value }
+                    onChange={ event => this.handleChange(event) }
+                    key={ key+'i' }
+                    style={ TextAreaStyle }
+                    onFocus={() => this.setState({ isFocused: variables.length > 0 }) }
+                  />
+                <Button
+                  size='large'
+                  style={ ButtonStyle }
+                  onClick={() => this.setState({ isFocused: !isFocused }) }>
+                  { isFocused ? 'Hide' : 'Show' }
+                </Button>
+                <Button
+                  size='large'
+                  type='danger'
+                  style={{ ...ButtonStyle, display: 'inline-block' }}
+                  onClick={ this.props.onDelete }
+                  >
+                  <Icon type="minus" />
+                </Button>
+                </div>}
 
-          key={ key+'p' }>
-          <Form>
-            {variables}
-          </Form>
-        </Panel>
-      </Collapse>
-
+            key={ key+'p' }>
+            <Form>
+              {variables}
+            </Form>
+          </Panel>
+        </Collapse>
+      </Disappear>
     )
   };
 }
