@@ -20,8 +20,6 @@ class Disappear extends Component {
      }
   }
 
-
-
   render() {
     return (
       <div style={{ height: '100%' }}>
@@ -29,7 +27,7 @@ class Disappear extends Component {
           native
           items={this.props.isVisible}
           from={{ overflow: 'hidden', height: 0 }}
-          enter={[{ height: 100 }]}
+          enter={[{ height: 'auto' }]}
           leave={{ height: 0 }}>
           {show =>
             show && (props => <animated.div style={props}>{this.props.children}</animated.div>)

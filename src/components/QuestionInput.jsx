@@ -157,7 +157,7 @@ class QuestionInput extends Component {
   }
 
   doNothing = event => {
-    console.log('nothing');
+    // console.log('nothing');
   }
 
   exportAsJSON() {
