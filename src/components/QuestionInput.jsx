@@ -165,8 +165,15 @@ class QuestionInput extends Component {
     return variables;
   }
 
+  toggle = e => this.setState(state => ({ isVisible: !state.isVisible }))
+
+  handleDelete = e => {
+    this.toggle()
+    this.props.onDelete()
+  }
+
   render() {
-    let { variables, isFocused } = this.state;
+    let { variables, isFocused, isVisible } = this.state;
     let key = this.props.uniqueKey;
     // console.log('variables', JSON.stringify(variables));
     let ButtonStyle = {
@@ -176,7 +183,7 @@ class QuestionInput extends Component {
 
     variables = variables.map(v => this.renderVariable(v));
     return (
-      <Disappear isVisible={true}>
+      <Disappear isVisible={isVisible}>
         <Collapse activeKey={isFocused ? key+'p' : null} bordered={false} onChange={event => this.doNothing(event) } key={ key+'c' }>
           <Panel
             showArrow={ false }
@@ -201,7 +208,7 @@ class QuestionInput extends Component {
                   size='large'
                   type='danger'
                   style={{ ...ButtonStyle, display: 'inline-block' }}
-                  onClick={ this.props.onDelete }
+                  onClick={ this.handleDelete }
                   >
                   <Icon type="minus" />
                 </Button>

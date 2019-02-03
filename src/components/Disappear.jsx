@@ -20,14 +20,14 @@ class Disappear extends Component {
      }
   }
 
- toggle = e => this.setState(state => ({ show: !state.show }))
+
 
   render() {
     return (
-      <div style={{ height: '100%' }} onClick={this.toggle}>
+      <div style={{ height: '100%' }}>
         <Transition
           native
-          items={this.state.show}
+          items={this.props.isVisible}
           from={{ overflow: 'hidden', height: 0 }}
           enter={[{ height: 100 }]}
           leave={{ height: 0 }}>
