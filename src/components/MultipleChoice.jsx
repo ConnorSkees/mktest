@@ -38,7 +38,7 @@ class MultipleChoice extends Component {
     this.props.onDelete()
   }
 
-  renderChoices = () => {
+  renderChoice = choice => {
 
   }
 
@@ -51,14 +51,13 @@ class MultipleChoice extends Component {
       display: choices.length > 0 ? 'inline-block' : 'none',
     }
 
-    choices = choices.map(v => this.renderVariable(v));
+    choices = choices.map(c => this.renderChoice(c));
     return (
       <Disappear isVisible={isVisible}>
         <Collapse
           style={ CollapseStyle }
           activeKey={isFocused ? key+'p' : null}
           bordered={false}
-          onChange={event => this.doNothing(event) }
           key={ key+'c' }>
           <Panel
             showArrow={ false }

@@ -4,6 +4,7 @@ import QuestionInput from './QuestionInput'
 import MultipleChoice from './MultipleChoice'
 import Disappear from './Disappear'
 
+// TODO: make multiple choice questions
 
 function sleep(seconds) {
   return new Promise(resolve => {
