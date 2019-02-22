@@ -19,9 +19,7 @@ class TestCreator extends Component {
     super(props);
     this.state = {
       visible: false,
-      questionInputs: [
-
-       ],
+      questionInputs: [],
      }
 
     this.myRef = React.createRef();
@@ -55,7 +53,7 @@ class TestCreator extends Component {
    }
 
  async handleDelete(key) {
-   var x = await sleep(2);
+   await sleep(2);
    let questionInputs = this.state.questionInputs.filter(k => k.key !== key);
    console.log(questionInputs)
    this.setState({ questionInputs })
